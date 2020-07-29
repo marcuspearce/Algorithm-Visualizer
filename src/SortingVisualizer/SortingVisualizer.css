@@ -1,0 +1,27 @@
+.array-container {
+    padding-top: 20px;
+    /* width:100%; */
+    /* margin:auto; */
+    /* position: absolute; */
+    /* left: 100px; */
+    /* top: 100px; */
+}
+  
+.array-bar {
+    width: 2px;
+    display: inline-block;
+    margin: 0 1px;
+    /* background-color: turquoise; */
+}
+
+.menu {
+    margin:auto;
+    height: 10vh;
+    background-color: lightblue;
+    /* top:50%; */
+}
+
+.container {
+    margin:auto;
+    /* background-color:blue; */
+}
