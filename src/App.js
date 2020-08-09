@@ -8,7 +8,8 @@ import Home from './components/Home';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Navbar from './components/myNavbar';
+import MyNavbar from './components/myNavbar';
+
 
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
@@ -22,7 +23,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <MyNavbar />
         
         <main>
           <Switch>

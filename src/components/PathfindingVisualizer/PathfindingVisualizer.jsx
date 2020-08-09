@@ -243,41 +243,39 @@ export default class PathfindingVisualizer extends Component {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     render() {
         const { grid, mouseIsPressed } = this.state;
 
         return (
             // need to encapsulate entire return stuff in single elemtnt <> <\>
             <>
-            <Container fluid>
-            <Row>
-                <Col sm={2}>
-                <ButtonGroup vertical>
-  <Button>Button</Button>
-  <Button>Button</Button>
 
-  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-1">
-    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-  </DropdownButton>
+                <div className="sidenav">
+                    <button>button 1</button>
+                    <button>Button 2</button>
+                    <button>button 3</button>
+                    <button>Button 24</button>
+                </div>
 
-  <Button>Button</Button>
-  <Button>Button</Button>
-
-  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-2">
-    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-  </DropdownButton>
-
-  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-3">
-    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-  </DropdownButton>
-</ButtonGroup>
-                </Col>
-                <Col sm={10}>
+                <div id="pathfinder-content">
                     <button onClick={() => this.visualizeDijkstra()}>
                         Visualize Dijkstra's Algorithm
+                    </button>
+                    <button onClick={() => this.reset()}>
+                        Reset
                     </button>
                     <button onClick={() => this.reset()}>
                         Reset
@@ -305,7 +303,7 @@ export default class PathfindingVisualizer extends Component {
                                                     this.handleMouseEnter(row,col)
                                                 }
                                                 onMouseLeave={(row,col) =>
-                                                     this.handleMouseLeave(row,col)
+                                                    this.handleMouseLeave(row,col)
                                                 }
                                                 onMouseUp={() => this.handleMouseUp()}>
                                             </Node>
@@ -316,53 +314,35 @@ export default class PathfindingVisualizer extends Component {
                             })}
                         </tbody>
                     </table>
-                </Col>
-            </Row>
-            </Container>
-                {/* <button onClick={() => this.visualizeDijkstra()}>
-                    Visualize Dijkstra's Algorithm
-                </button>
-                <button onClick={() => this.reset()}>
-                    Reset
-                </button>
-                <table className="grid">
-                    <tbody>
-                        {grid.map((row, rowIndex) => {
-                            return (
-                                <tr className="gridRow" key={rowIndex}>
-                                {row.map((node, nodeIndex) => {
-                                    const {row, col, isStart, isFinish, isWall} = node;
-                                    return (
-                                        <Node 
-                                            key={nodeIndex}
-                                            row={row}
-                                            col={col}
-                                            isStart={isStart}
-                                            isFinish={isFinish}
-                                            isWall={isWall}
-                                            mouseIsPressed={mouseIsPressed}
-                                            onMouseDown={(row,col) => 
-                                                this.handleMouseDown(row,col)
-                                            }
-                                            onMouseEnter={(row,col) => 
-                                                this.handleMouseEnter(row,col)
-                                            }
-                                            onMouseLeave={(row,col) =>
-                                                this.handleMouseLeave(row,col)
-                                            }
-                                            onMouseUp={() => this.handleMouseUp()}>
-                                        </Node>
-                                    );
-                                })}
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table> */}
+                </div>
+
+
+
+            
+                
             </>
         );
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const getInitialGrid = () => {
@@ -464,3 +444,79 @@ const findStartOrFinishNode = (grid, startOrFinish) => {
 }
 
 
+
+
+
+
+
+
+{/* <Container fluid>
+            <Row>
+                <Col sm={2}>
+                <ButtonGroup vertical>
+  <Button>Button</Button>
+  <Button>Button</Button>
+
+  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-1">
+    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
+    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+  </DropdownButton>
+
+  <Button>Button</Button>
+  <Button>Button</Button>
+
+  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-2">
+    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
+    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+  </DropdownButton>
+
+  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-3">
+    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
+    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+  </DropdownButton>
+</ButtonGroup>
+                </Col>
+                <Col sm={10}>
+                    <button onClick={() => this.visualizeDijkstra()}>
+                        Visualize Dijkstra's Algorithm
+                    </button>
+                    <button onClick={() => this.reset()}>
+                        Reset
+                    </button>
+                    <table className="grid">
+                        <tbody>
+                            {grid.map((row, rowIndex) => {
+                                return (
+                                    <tr className="gridRow" key={rowIndex}>
+                                    {row.map((node, nodeIndex) => {
+                                        const {row, col, isStart, isFinish, isWall} = node;
+                                        return (
+                                            <Node 
+                                                key={nodeIndex}
+                                                row={row}
+                                                col={col}
+                                                isStart={isStart}
+                                                isFinish={isFinish}
+                                                isWall={isWall}
+                                                mouseIsPressed={mouseIsPressed}
+                                                onMouseDown={(row,col) => 
+                                                    this.handleMouseDown(row,col)
+                                                }
+                                                onMouseEnter={(row,col) => 
+                                                    this.handleMouseEnter(row,col)
+                                                }
+                                                onMouseLeave={(row,col) =>
+                                                     this.handleMouseLeave(row,col)
+                                                }
+                                                onMouseUp={() => this.handleMouseUp()}>
+                                            </Node>
+                                        );
+                                    })}
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </Col>
+            </Row>
+            </Container> */}
