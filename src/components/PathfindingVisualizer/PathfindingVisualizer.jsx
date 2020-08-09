@@ -3,14 +3,16 @@ import Node from "./Node/Node";
 import {dijkstra, dijkstraReturnFinishNode} from '../../algorithms/dijkstra';
 import {getNodesInShortestPathOrder} from '../../algorithms/helper-func-algorithms';
 
+import { Container, Row, Col, ButtonGroup, Button, DropdownButton, Dropdown } from 'react-bootstrap';
+
 import "./PathfindingVisualizer.css";
 
-const NUM_ROWS = 20;
-const NUM_COLS = 30;
-const INIT_START_ROW = 10;
+const NUM_ROWS = 30;
+const NUM_COLS = 40;
+const INIT_START_ROW = 15;
 const INIT_START_COL = 5;
-const INIT_FINISH_ROW = 10;
-const INIT_FINISH_COL = 25;
+const INIT_FINISH_ROW = 15;
+const INIT_FINISH_COL = 35;
 
 export default class PathfindingVisualizer extends Component {
     constructor(props) {
@@ -247,44 +249,116 @@ export default class PathfindingVisualizer extends Component {
         return (
             // need to encapsulate entire return stuff in single elemtnt <> <\>
             <>
-                <button onClick={() => this.visualizeDijkstra()}>
+            <Container fluid>
+            <Row>
+                <Col sm={2}>
+                <ButtonGroup vertical>
+  <Button>Button</Button>
+  <Button>Button</Button>
+
+  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-1">
+    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
+    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+  </DropdownButton>
+
+  <Button>Button</Button>
+  <Button>Button</Button>
+
+  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-2">
+    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
+    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+  </DropdownButton>
+
+  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-3">
+    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
+    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+  </DropdownButton>
+</ButtonGroup>
+                </Col>
+                <Col sm={10}>
+                    <button onClick={() => this.visualizeDijkstra()}>
+                        Visualize Dijkstra's Algorithm
+                    </button>
+                    <button onClick={() => this.reset()}>
+                        Reset
+                    </button>
+                    <table className="grid">
+                        <tbody>
+                            {grid.map((row, rowIndex) => {
+                                return (
+                                    <tr className="gridRow" key={rowIndex}>
+                                    {row.map((node, nodeIndex) => {
+                                        const {row, col, isStart, isFinish, isWall} = node;
+                                        return (
+                                            <Node 
+                                                key={nodeIndex}
+                                                row={row}
+                                                col={col}
+                                                isStart={isStart}
+                                                isFinish={isFinish}
+                                                isWall={isWall}
+                                                mouseIsPressed={mouseIsPressed}
+                                                onMouseDown={(row,col) => 
+                                                    this.handleMouseDown(row,col)
+                                                }
+                                                onMouseEnter={(row,col) => 
+                                                    this.handleMouseEnter(row,col)
+                                                }
+                                                onMouseLeave={(row,col) =>
+                                                     this.handleMouseLeave(row,col)
+                                                }
+                                                onMouseUp={() => this.handleMouseUp()}>
+                                            </Node>
+                                        );
+                                    })}
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </Col>
+            </Row>
+            </Container>
+                {/* <button onClick={() => this.visualizeDijkstra()}>
                     Visualize Dijkstra's Algorithm
                 </button>
                 <button onClick={() => this.reset()}>
                     Reset
                 </button>
-                <div className="grid">
-                    {grid.map((row, rowIndex) => {
-                        return (
-                            <div key={rowIndex}>
-                            {row.map((node, nodeIndex) => {
-                                const {row, col, isStart, isFinish, isWall} = node;
-                                return (
-                                    <Node 
-                                        key={nodeIndex}
-                                        row={row}
-                                        col={col}
-                                        isStart={isStart}
-                                        isFinish={isFinish}
-                                        isWall={isWall}
-                                        mouseIsPressed={mouseIsPressed}
-                                        onMouseDown={(row,col) => 
-                                            this.handleMouseDown(row,col)
-                                        }
-                                        onMouseEnter={(row,col) => 
-                                            this.handleMouseEnter(row,col)
-                                        }
-                                        onMouseLeave={(row,col) =>
-                                            this.handleMouseLeave(row,col)
-                                        }
-                                        onMouseUp={() => this.handleMouseUp()}>
-                                    </Node>
-                                );
-                            })}
-                            </div>
-                        );
-                    })}
-                </div>
+                <table className="grid">
+                    <tbody>
+                        {grid.map((row, rowIndex) => {
+                            return (
+                                <tr className="gridRow" key={rowIndex}>
+                                {row.map((node, nodeIndex) => {
+                                    const {row, col, isStart, isFinish, isWall} = node;
+                                    return (
+                                        <Node 
+                                            key={nodeIndex}
+                                            row={row}
+                                            col={col}
+                                            isStart={isStart}
+                                            isFinish={isFinish}
+                                            isWall={isWall}
+                                            mouseIsPressed={mouseIsPressed}
+                                            onMouseDown={(row,col) => 
+                                                this.handleMouseDown(row,col)
+                                            }
+                                            onMouseEnter={(row,col) => 
+                                                this.handleMouseEnter(row,col)
+                                            }
+                                            onMouseLeave={(row,col) =>
+                                                this.handleMouseLeave(row,col)
+                                            }
+                                            onMouseUp={() => this.handleMouseUp()}>
+                                        </Node>
+                                    );
+                                })}
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table> */}
             </>
         );
     }

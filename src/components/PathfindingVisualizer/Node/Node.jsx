@@ -30,14 +30,15 @@ export default class Node extends Component {
             ? 'node-wall'
             : '';
         return (
-            <div 
+            <td 
                 id={`node-${row}-${col}`}
                 className={`node ${extraClassName}`}
                 onMouseDown={() => onMouseDown(row,col)}
                 onMouseEnter={() => onMouseEnter(row,col)}
                 onMouseLeave={() => onMouseLeave(row,col)}
                 onMouseUp={() => onMouseUp()}>
-            </div>
+            </td>
         );
     }
 }
+
