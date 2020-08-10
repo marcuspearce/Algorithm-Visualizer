@@ -26,10 +26,15 @@ function App() {
         <MyNavbar />
         
         <main>
-          <Switch>
+          {/* <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/sortingVisualizer" component={SortingVisualizer} />
             <Route path="/pathfindingVisualizer" component={PathfindingVisualizer} />
+          </Switch> */}
+          <Switch>
+            <Route path={process.env.PUBLIC_URL + '/'} exact component={Home} />
+            <Route path={process.env.PUBLIC_URL + '/sortingVisualizer'} component={SortingVisualizer} />
+            <Route path={process.env.PUBLIC_URL + '/pathfindingVisualizer'} component={PathfindingVisualizer} />
           </Switch>
         </main>
       </div>

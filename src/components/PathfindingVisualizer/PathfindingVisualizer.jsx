@@ -260,7 +260,6 @@ export default class PathfindingVisualizer extends Component {
         const { grid, mouseIsPressed } = this.state;
 
         return (
-            // need to encapsulate entire return stuff in single elemtnt <> <\>
             <>
 
                 <div className="sidenav">
@@ -315,7 +314,7 @@ export default class PathfindingVisualizer extends Component {
                         </tbody>
                     </table>
                 </div>
-
+                
 
 
             

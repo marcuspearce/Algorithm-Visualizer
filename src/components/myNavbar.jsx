@@ -28,7 +28,8 @@ export default class myNavbar extends React.Component {
     <Nav className="mr-auto">
         <Nav.Item>
             <Nav.Link>
-                <Link to="/">
+                {/* <Link to="/"> */}
+                <Link to={process.env.PUBLIC_URL + '/'}>
                     <FontAwesomeIcon icon={faHome} size="2x"></FontAwesomeIcon>
 
                 </Link>
@@ -39,12 +40,16 @@ export default class myNavbar extends React.Component {
     <Nav className="mx-auto">
         <Nav.Item>
             <Nav.Link>
-                <Link to="/sortingVisualizer">Sorting Visualizer</Link>
+                <Link to={process.env.PUBLIC_URL + '/sortingVisualizer'}>
+                    Sorting Visualizer
+                </Link>
             </Nav.Link>
         </Nav.Item>
         <Nav.Item>
             <Nav.Link>
-                <Link to="/pathfindingVisualizer">Pathfinding Visualizer</Link>
+                <Link to={process.env.PUBLIC_URL + '/pathfindingVisualizer'}>
+                    Pathfinding Visualizer
+                </Link>
             </Nav.Link>
         </Nav.Item>
     </Nav>
