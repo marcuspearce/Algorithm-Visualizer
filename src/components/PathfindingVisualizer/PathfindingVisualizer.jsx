@@ -3,7 +3,7 @@ import Node from "./Node/Node";
 import {dijkstra, dijkstraReturnFinishNode} from '../../algorithms/dijkstra';
 import {getNodesInShortestPathOrder} from '../../algorithms/helper-func-algorithms';
 
-import { Container, Row, Col, ButtonGroup, Button, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Button, DropdownButton, Dropdown } from 'react-bootstrap';
 
 import "./PathfindingVisualizer.css";
 
@@ -261,24 +261,25 @@ export default class PathfindingVisualizer extends Component {
 
         return (
             <>
-
-                <div className="sidenav">
-                    <button>button 1</button>
-                    <button>Button 2</button>
-                    <button>button 3</button>
-                    <button>Button 24</button>
+                <div className="sidebar-p">
+                    <h1 className="sidebar-p-title">Algorithm Visualizer</h1>
+                    <hr className="sidebar-p-line"/>
+                    <DropdownButton variant="secondary" className="sidebar-p-dropdown" id="dropdown-basic-button" title="Choose an Algorithm">
+                        <Dropdown.Item onClick={() => this.visualizeDijkstra()}>Dijkstra's</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                    </DropdownButton>
+                    
+                    <Button onClick={() => this.reset()} variant="info">
+                        Reset Grid
+                    </Button>{' '}
+                    <Button onClick={() => this.visualizeDijkstra()} variant="success">
+                        Visualize!
+                    </Button>{' '}
                 </div>
 
                 <div id="pathfinder-content">
-                    <button onClick={() => this.visualizeDijkstra()}>
-                        Visualize Dijkstra's Algorithm
-                    </button>
-                    <button onClick={() => this.reset()}>
-                        Reset
-                    </button>
-                    <button onClick={() => this.reset()}>
-                        Reset
-                    </button>
+
                     <table className="grid">
                         <tbody>
                             {grid.map((row, rowIndex) => {
@@ -442,80 +443,3 @@ const findStartOrFinishNode = (grid, startOrFinish) => {
     }
 }
 
-
-
-
-
-
-
-
-{/* <Container fluid>
-            <Row>
-                <Col sm={2}>
-                <ButtonGroup vertical>
-  <Button>Button</Button>
-  <Button>Button</Button>
-
-  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-1">
-    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-  </DropdownButton>
-
-  <Button>Button</Button>
-  <Button>Button</Button>
-
-  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-2">
-    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-  </DropdownButton>
-
-  <DropdownButton as={ButtonGroup} title="Dropdown" id="bg-vertical-dropdown-3">
-    <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-    <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-  </DropdownButton>
-</ButtonGroup>
-                </Col>
-                <Col sm={10}>
-                    <button onClick={() => this.visualizeDijkstra()}>
-                        Visualize Dijkstra's Algorithm
-                    </button>
-                    <button onClick={() => this.reset()}>
-                        Reset
-                    </button>
-                    <table className="grid">
-                        <tbody>
-                            {grid.map((row, rowIndex) => {
-                                return (
-                                    <tr className="gridRow" key={rowIndex}>
-                                    {row.map((node, nodeIndex) => {
-                                        const {row, col, isStart, isFinish, isWall} = node;
-                                        return (
-                                            <Node 
-                                                key={nodeIndex}
-                                                row={row}
-                                                col={col}
-                                                isStart={isStart}
-                                                isFinish={isFinish}
-                                                isWall={isWall}
-                                                mouseIsPressed={mouseIsPressed}
-                                                onMouseDown={(row,col) => 
-                                                    this.handleMouseDown(row,col)
-                                                }
-                                                onMouseEnter={(row,col) => 
-                                                    this.handleMouseEnter(row,col)
-                                                }
-                                                onMouseLeave={(row,col) =>
-                                                     this.handleMouseLeave(row,col)
-                                                }
-                                                onMouseUp={() => this.handleMouseUp()}>
-                                            </Node>
-                                        );
-                                    })}
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-                </Col>
-            </Row>
-            </Container> */}

@@ -40,15 +40,15 @@ export default class myNavbar extends React.Component {
     <Nav className="mx-auto">
         <Nav.Item>
             <Nav.Link>
-                <Link to={process.env.PUBLIC_URL + '/sortingVisualizer'}>
-                    Sorting Visualizer
+                <Link to={process.env.PUBLIC_URL + '/pathfindingVisualizer'}>
+                    Pathfinding Visualizer
                 </Link>
             </Nav.Link>
         </Nav.Item>
         <Nav.Item>
             <Nav.Link>
-                <Link to={process.env.PUBLIC_URL + '/pathfindingVisualizer'}>
-                    Pathfinding Visualizer
+                <Link to={process.env.PUBLIC_URL + '/sortingVisualizer'}>
+                    Sorting Visualizer
                 </Link>
             </Nav.Link>
         </Nav.Item>

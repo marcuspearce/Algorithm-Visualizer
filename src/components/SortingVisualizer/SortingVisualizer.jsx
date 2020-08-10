@@ -2,9 +2,12 @@ import React from 'react';
 import './SortingVisualizer.css';
 import {getMergeSortAnimations} from '../../algorithms/mergeSort.js';
 
+import { Button, DropdownButton, Dropdown } from 'react-bootstrap';
 
-const NUMBER_OF_ARRAY_BARS = 100;
-const ANIMATION_SPEED_MS = 10;
+
+
+const NUMBER_OF_ARRAY_BARS = 150;
+const ANIMATION_SPEED_MS = 5;
 const PRIMARY_COLOR = 'turquoise';
 const SECONDARY_COLOR = 'red';
 
@@ -65,19 +68,46 @@ export default class SortingVisualizer extends React.Component {
     heapSort() {}
     bubbleSort() {}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     render() {
         const {array} = this.state;
 
         return (
             <>
-                <div className="container">
-                    <div className="menu">
-                        <button onClick={() => this.resetArray()}>Generate New Array</button>
-                        <button onClick={() => this.mergeSort()}>Merge Sort</button>
-                        <button onClick={() => this.quickSort()}>Quick Sort</button>
-                        <button onClick={() => this.heapSort()}>Heap Sort</button>
-                        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
-                    </div>
+
+                <div className="sidebar-s">
+                    <h1 className="sidebar-s-title">Algorithm Visualizer</h1>
+                    <hr className="sidebar-s-line"/>
+                    <DropdownButton variant="secondary" className="sidebar-s-dropdown" id="dropdown-basic-button" title="Choose an Algorithm">
+                        <Dropdown.Item onClick={() => this.mergeSort()}>Merge Sort</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.quickSort()}>Quick Sort</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.heapSort()}>Heap Sort</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.bubbleSort()}>Bubble Sort</Dropdown.Item>
+                    </DropdownButton>
+                    
+                    <Button onClick={() => this.resetArray()} variant="info">
+                        New Array
+                    </Button>{' '}
+                    <Button onClick={() => this.mergeSort()} variant="success">
+                        Visualize!
+                    </Button>{' '}
+                </div>
+
+                <div id="sorting-content">
                     <div className="array-container">
                         {array.map((value,idx) => (
                             <div 
@@ -96,6 +126,18 @@ export default class SortingVisualizer extends React.Component {
         );
     }  
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // From https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
