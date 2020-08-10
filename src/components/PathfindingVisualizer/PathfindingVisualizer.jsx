@@ -266,8 +266,8 @@ export default class PathfindingVisualizer extends Component {
                     <hr className="sidebar-p-line"/>
                     <DropdownButton variant="secondary" className="sidebar-p-dropdown" id="dropdown-basic-button" title="Choose an Algorithm">
                         <Dropdown.Item onClick={() => this.visualizeDijkstra()}>Dijkstra's</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                        <Dropdown.Item >Another action</Dropdown.Item>
+                        <Dropdown.Item >Something else</Dropdown.Item>
                     </DropdownButton>
                     
                     <Button onClick={() => this.reset()} variant="info">

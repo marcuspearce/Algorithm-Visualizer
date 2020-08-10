@@ -11,15 +11,16 @@ export default class Home extends React.Component {
         };
     }
 
-    componentDidMount() {
-        const logo = document.querySelectorAll("#logo path");
+    // get exact lengths of individual letters for SVG animations
+    // componentDidMount() {
+    //     const logo = document.querySelectorAll("#logo path");
 
-        // get exact lengths of individual letters for animations
-        console.log("asdf");
-        for(let i = 0; i < logo.length; i++) {
-            console.log(`Letter ${i} is ${logo[i].getTotalLength()}`);
-        }
-    }
+    //     // get exact lengths of individual letters for animations
+    //     console.log("asdf");
+    //     for(let i = 0; i < logo.length; i++) {
+    //         console.log(`Letter ${i} is ${logo[i].getTotalLength()}`);
+    //     }
+    // }
 
 
     render() {

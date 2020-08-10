@@ -8,8 +8,8 @@ import { Button, DropdownButton, Dropdown } from 'react-bootstrap';
 
 const NUMBER_OF_ARRAY_BARS = 150;
 const ANIMATION_SPEED_MS = 5;
-const PRIMARY_COLOR = 'turquoise';
-const SECONDARY_COLOR = 'red';
+const PRIMARY_COLOR = 'rgba(0, 190, 218, 0.75)';
+const SECONDARY_COLOR = 'yellow';
 
 export default class SortingVisualizer extends React.Component {
     constructor(props) {
