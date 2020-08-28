@@ -241,7 +241,10 @@ export default class PathfindingVisualizer extends Component {
 
 
 
-
+    // Helper functions to select correct sort
+    setStateDijkstra() {
+        // TODO: implement (look at Sorting Visualizer)
+    }
 
 
 
@@ -265,9 +268,7 @@ export default class PathfindingVisualizer extends Component {
                     <h1 className="sidebar-p-title">Algorithm Visualizer</h1>
                     <hr className="sidebar-p-line"/>
                     <DropdownButton variant="secondary" className="sidebar-p-dropdown" id="dropdown-basic-button" title="Choose an Algorithm">
-                        <Dropdown.Item onClick={() => this.visualizeDijkstra()}>Dijkstra's</Dropdown.Item>
-                        <Dropdown.Item >Another action</Dropdown.Item>
-                        <Dropdown.Item >Something else</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.setStateDijkstra()}>Dijkstra's</Dropdown.Item>
                     </DropdownButton>
                     
                     <Button onClick={() => this.reset()} variant="info">
