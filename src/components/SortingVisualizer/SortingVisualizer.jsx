@@ -1,6 +1,7 @@
 import React from 'react';
 import './SortingVisualizer.css';
 import {getMergeSortAnimations} from '../../algorithms/mergeSort.js';
+import {getBubbleSortAnimations} from '../../algorithms/bubbleSort.js';
 
 import { Button, DropdownButton, Dropdown } from 'react-bootstrap';
 
@@ -17,6 +18,7 @@ export default class SortingVisualizer extends React.Component {
 
         this.state = {
             array: [],
+            algorithm: "bubble",        // DEFAULT BUBBLE SORT
         };
     }
 
@@ -34,13 +36,12 @@ export default class SortingVisualizer extends React.Component {
 
 
     // below functions process the actual animations of the sorting algorithms
-
     mergeSort() {
         const animations = getMergeSortAnimations(this.state.array);
         for(let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
 
-            // if is color change
+            // if is color change (every 3rd animation req colour change)
             if(i % 3 !== 2) {
                 const [barOneIndex, barTwoIndex] = animations[i];
                 const barOneStyle = arrayBars[barOneIndex].style;
@@ -54,6 +55,7 @@ export default class SortingVisualizer extends React.Component {
                     barTwoStyle.backgroundColor = color;
                 }, i*ANIMATION_SPEED_MS);
             } 
+            // changing height
             else {
                 setTimeout(() => {
                     const [barOneIndex, newHeight] = animations[i];
@@ -64,20 +66,81 @@ export default class SortingVisualizer extends React.Component {
         }
     }
 
+
+    bubbleSort() {
+        const animations = getBubbleSortAnimations(this.state.array);
+        var i;
+        // animations come in set of FOURS
+        for( i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName('array-bar');
+
+            // first animation: change to SECONDARY_COLOR
+            if(i % 4 === 0) {
+                const [barOneIndex, barTwoIndex] = animations[i];
+                const barOneStyle = arrayBars[barOneIndex].style;
+                const barTwoStyle = arrayBars[barTwoIndex].style;
+                let color = SECONDARY_COLOR;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i*ANIMATION_SPEED_MS);
+            }
+
+            // second and third animation: modify heights
+            if(i % 4 === 1 ) {
+                const [barOneIndex, barOneHeight] = animations[i];
+                i++;
+                const [barTwoIndex, barTwoHeight] = animations[i];
+
+                const barOneStyle = arrayBars[barOneIndex].style;
+                const barTwoStyle = arrayBars[barTwoIndex].style;
+
+                setTimeout(() => {
+                    barOneStyle.height = `${barOneHeight}.px`;
+                    barTwoStyle.height = `${barTwoHeight}.px`;
+                }, i*ANIMATION_SPEED_MS);
+            }
+
+            // fourth animation: change back to PRIMARY_COLOR
+            if(i % 4 === 3) {
+                const [barOneIndex, barTwoIndex] = animations[i];
+                const barOneStyle = arrayBars[barOneIndex].style;
+                const barTwoStyle = arrayBars[barTwoIndex].style;
+                let color = PRIMARY_COLOR;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i*ANIMATION_SPEED_MS);
+            }
+        }
+
+    }
+
+
+
     quickSort() {}
     heapSort() {}
-    bubbleSort() {}
 
 
+    // Helper functions to select correct sort
+    setStateBubble() {
+        this.setState({algorithm : "bubble"});
+    }
+    setStateMerge() {
+        this.setState({algorithm : "merge"});
+    }
 
 
-
-
-
-
-
-
-
+    // play the animation for the selected Sorting Algorithm
+    visualize() {
+        const alg = this.state.algorithm;
+        if(alg == "bubble") {
+            this.bubbleSort();
+        }
+        else if (alg == "merge") {
+            this.mergeSort();
+        }
+    }
 
 
 
@@ -93,16 +156,16 @@ export default class SortingVisualizer extends React.Component {
                     <h1 className="sidebar-s-title">Algorithm Visualizer</h1>
                     <hr className="sidebar-s-line"/>
                     <DropdownButton variant="secondary" className="sidebar-s-dropdown" id="dropdown-basic-button" title="Choose an Algorithm">
-                        <Dropdown.Item onClick={() => this.mergeSort()}>Merge Sort</Dropdown.Item>
-                        <Dropdown.Item onClick={() => this.quickSort()}>Quick Sort</Dropdown.Item>
-                        <Dropdown.Item onClick={() => this.heapSort()}>Heap Sort</Dropdown.Item>
-                        <Dropdown.Item onClick={() => this.bubbleSort()}>Bubble Sort</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.setStateBubble()}>Bubble Sort</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.setStateMerge()}>Merge Sort</Dropdown.Item>
+                        {/* <Dropdown.Item onClick={() => this.quickSort()}>Quick Sort</Dropdown.Item> */}
+                        {/* <Dropdown.Item onClick={() => this.heapSort()}>Heap Sort</Dropdown.Item> */}
                     </DropdownButton>
                     
                     <Button onClick={() => this.resetArray()} variant="info">
                         New Array
                     </Button>{' '}
-                    <Button onClick={() => this.mergeSort()} variant="success">
+                    <Button onClick={() => this.visualize()} variant="success">
                         Visualize!
                     </Button>{' '}
                 </div>
@@ -126,15 +189,6 @@ export default class SortingVisualizer extends React.Component {
         );
     }  
 }
-
-
-
-
-
-
-
-
-
 
 
 

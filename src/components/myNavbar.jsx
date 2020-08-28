@@ -23,7 +23,7 @@ export default class myNavbar extends React.Component {
         return (
             <>
                 
-<Navbar bg="dark" variant="dark">
+<Navbar sticky="top" bg="dark" variant="dark">
 
     <Nav className="mr-auto">
         <Nav.Item>

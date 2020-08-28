@@ -21,14 +21,19 @@
     animation-name: visitedAnimation;
     animation-duration: 1.5s;
     animation-timing-function: ease-out;
-    animation-delay: 0;
+    /* animation-delay: 0; */
     animation-direction: alternate;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-play-state: running;
+
+    /* show current node */
+    animation-delay: .001s;
+    background-color:yellow;
 }
   
 @keyframes visitedAnimation {
+
     0% {
         transform: scale(0.3);
         background-color: rgba(0, 0, 66, 0.75);
