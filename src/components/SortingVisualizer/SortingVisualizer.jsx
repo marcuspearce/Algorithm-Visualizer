@@ -3,6 +3,7 @@ import './SortingVisualizer.css';
 import {getMergeSortAnimations} from '../../algorithms/mergeSort.js';
 import {getBubbleSortAnimations} from '../../algorithms/bubbleSort.js';
 import {getSelectionSortAnimations} from '../../algorithms/selectionSort.js';
+import {getInsertionSortAnimations} from '../../algorithms/insertionSort.js';
 
 
 import { Button, DropdownButton, Dropdown } from 'react-bootstrap';
@@ -49,6 +50,9 @@ export default class SortingVisualizer extends React.Component {
     setStateSelection() {
         this.setState({algorithm : "Selection", dropdownText: "Selection Sort"});
     }
+    setStateInsertion() {
+        this.setState({algorithm : "Insertion", dropdownText: "Insertion Sort"});
+    }
 
 
 
@@ -62,7 +66,10 @@ export default class SortingVisualizer extends React.Component {
             this.mergeSort();
         }
         else if (alg === "Selection") {
-            this.selectionSort();
+            this.selectionOrInsertionSort(alg);
+        }
+        else if (alg === "Insertion") {
+            this.selectionOrInsertionSort(alg);
         }
     }
 
@@ -151,14 +158,25 @@ export default class SortingVisualizer extends React.Component {
     }
 
 
-    selectionSort() {
-        const animations = getSelectionSortAnimations(this.state.array);
+    selectionOrInsertionSort(alg) {
+        var animations = []
+        if (alg === "Selection") {
+            animations = getSelectionSortAnimations(this.state.array);
+        }
+        else if (alg === "Insertion") {
+            animations = getInsertionSortAnimations(this.state.array);
+            // console.log(animations);
+            // return;
+        }
+
+
         var i;
         for(i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
 
-            // if no [-1,-1] pair, then a pair animations -> switching bar colours for compared elements
-            // [-1,-1] signals set of FOUR animations for ACTUAL SWAP OF ARRAY BARS
+             // if no [-1,-1] pair, then just changing colours (no swapping)
+                // if YES, then sequence of 4 animations for swapping
+                // if NO, then sequence of 2 animations for changing colour
 
             // NOTE: needed to redefine var as const w/ numbers because .style would be undefined otherwise
             var [check1, check2] = animations[i];
@@ -231,7 +249,6 @@ export default class SortingVisualizer extends React.Component {
     }
 
 
-
     quickSort() {}
     heapSort() {}
 
@@ -255,8 +272,8 @@ export default class SortingVisualizer extends React.Component {
                     <DropdownButton variant="secondary" className="sidebar-s-dropdown" id="dropdown-basic-button" title={this.state.dropdownText}>
                         <Dropdown.Item onClick={() => this.setStateBubble()}>Bubble Sort</Dropdown.Item>                        
                         <Dropdown.Item onClick={() => this.setStateSelection()}>Selection Sort</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.setStateInsertion()}>Insertion Sort</Dropdown.Item>
                         <Dropdown.Item onClick={() => this.setStateMerge()}>Merge Sort</Dropdown.Item>
-                        {/* <Dropdown.Item onClick={() => this.quickSort()}>Quick Sort</Dropdown.Item> */}
                         {/* <Dropdown.Item onClick={() => this.heapSort()}>Heap Sort</Dropdown.Item> */}
                     </DropdownButton>
                     

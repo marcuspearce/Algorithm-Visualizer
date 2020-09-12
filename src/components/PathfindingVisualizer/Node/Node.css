@@ -28,8 +28,8 @@
     animation-play-state: running;
 
     /* show current node */
-    animation-delay: .001s;
-    background-color:yellow;
+    /* animation-delay: .001s;
+    background-color:yellow; */
 }
   
 @keyframes visitedAnimation {
