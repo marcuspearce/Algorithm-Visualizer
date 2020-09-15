@@ -11,6 +11,7 @@ My motivation to create this project was to provide a resource to help me teach 
 * Sorting Algorithms
   * Bubble Sort
   * Selection Sort
+  * Insertion Sort
   * Merge Sort
   
 Took inspiration from: https://www.youtube.com/watch?v=n4t_-NjY_Sg
